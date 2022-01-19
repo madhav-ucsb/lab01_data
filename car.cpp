@@ -74,14 +74,14 @@ Car::Car(Car const& o)
   strcpy(model, o.getModel());
 
 
-   
-  zeroToSixtyNs = o.zeroToSixtyNs;
-  headonDragCoeff = o.headonDragCoeff;
+  PerformanceStats perf = o.getStats();
+  zeroToSixtyNs = perf.zeroToSixtyNs;
+  headonDragCoeff = perf.headonDragCoeff;
 
-  horsepower = o.horsepower;
+  horsepower = perf.horsepower;
 
-  seatCount = o.seatCount;
-  backseatDoors = o.backseatDoors;
+  seatCount = o.getSeatCount();
+  backseatDoors = o.getBackseatDoors();
 }
 Car& Car::operator=(Car const& o)
 {
@@ -104,15 +104,15 @@ Car& Car::operator=(Car const& o)
   strcpy(model, o.getModel());
 
 
-   
+  PerformanceStats perf = o.getStats();
 
-  zeroToSixtyNs = o.zeroToSixtyNs;
-  headonDragCoeff = o.headonDragCoeff;
+  zeroToSixtyNs = perf.zeroToSixtyNs;
+  headonDragCoeff = perf.headonDragCoeff;
 
-  horsepower = o.horsepower;
+  horsepower = perf.horsepower;
 
-  seatCount = o.seatCount;
-  backseatDoors = o.backseatDoors;
+  seatCount = o.getSeatCount();
+  backseatDoors = o.getBackseatDoors();
   return *this;
 
 }
@@ -178,7 +178,6 @@ void Car::reexamineDoors(DoorKind newDoorKind)
 
 
 
-
 /*
 
 int main(int argc, char const *argv[])
@@ -233,5 +232,4 @@ int main(int argc, char const *argv[])
 
   
 }
-
 */
