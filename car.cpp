@@ -30,8 +30,12 @@ uint8_t Car::getSeatCount() const
 }
 Car:: Car(char const* const manufacturerName, char const*  const modelName, PerformanceStats perf, uint8_t numSeats, DoorKind backseatDoorDesign)
 {
-  manufacturer=strdup(manufacturerName);
-  model = strdup(modelName);
+  manufacturer=new char[strlen(manufacturerName)+1];
+  
+  strcpy(manufacturer, manufacturerName );
+
+  model = new char[strlen(modelName) + 1];
+  strcpy(model, modelName);
   zeroToSixtyNs = perf.zeroToSixtyNs;
   headonDragCoeff = perf.headonDragCoeff;
 
@@ -73,6 +77,9 @@ Car& Car::operator=(Car const& o)
 }
 Car:: ~Car()
 {
+  delete [] manufacturer;
+  delete[] model;
+
   //delete [] manufacturer;
   //delete [] model;
 }
@@ -94,11 +101,16 @@ DoorKind Car::getBackseatDoors() const
 }
 void Car::manufacturerChange(char const* const newManufacturer)
 {
-  manufacturer = strdup(newManufacturer);
+  manufacturer = new char[strlen(newManufacturer) + 1];
+  strcpy(manufacturer, newManufacturer);
 }
 void Car::modelNameChange(char const* const newModelName)
 {
-  model = strdup(newModelName);
+  model = new char[strlen(newModelName) + 1];
+
+  strcpy(model, newModelName);
+
+
 }
 void Car::reevaluateStats(PerformanceStats newStats)
 {
@@ -117,7 +129,7 @@ void Car::reexamineDoors(DoorKind newDoorKind)
 
 
 
-
+/*
 
 
 int main(int argc, char const *argv[])
@@ -161,10 +173,16 @@ int main(int argc, char const *argv[])
   string manu1 = (string) c.getManufacturer();
   cout<<manu1<<endl;
 
+  c.recountSeats(2);
+  seat_c = (int) c.getSeatCount();
+
+  cout<<seat_c<<endl;
+
 
   
   
 
   
 }
+*/
 
