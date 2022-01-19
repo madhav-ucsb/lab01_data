@@ -54,6 +54,17 @@ Car:: Car(char const* const manufacturerName, char const*  const modelName, Perf
 
 Car::Car(Car const& o)
 {
+  /*
+  if(manufacturer)
+  {
+    delete [] manufacturer;
+  }
+  if(model)
+  {
+    delete [] model;
+  }
+  */
+
   manufacturer= new char[strlen(o.getManufacturer())+1];
 
   strcpy(manufacturer, o.getManufacturer());
@@ -74,6 +85,16 @@ Car::Car(Car const& o)
 }
 Car& Car::operator=(Car const& o)
 {
+  /*
+  if(manufacturer)
+  {
+    delete [] manufacturer;
+  }
+  if(model)
+  {
+    delete [] model;
+  }
+  */
   manufacturer= new char[strlen(o.getManufacturer())+1];
 
   strcpy(manufacturer, o.getManufacturer());
@@ -92,6 +113,8 @@ Car& Car::operator=(Car const& o)
 
   seatCount = o.seatCount;
   backseatDoors = o.backseatDoors;
+  return *this;
+
 }
 Car:: ~Car()
 {
@@ -172,8 +195,8 @@ int main(int argc, char const *argv[])
 
   int seat_c = (int) c.getSeatCount();
   cout<<seat_c<<endl;
-
-  Car d = Car(c);
+  Car d = c;
+  //Car d = Car(c);
 
   int seat_d = (int) d.getSeatCount();
   cout<<seat_d<<endl;
@@ -210,5 +233,5 @@ int main(int argc, char const *argv[])
 
   
 }
-*/
 
+*/
