@@ -13,7 +13,8 @@ using namespace std;
 #include<string>
 Car :: Car()
 {
-  manufacturer , model = NULL , NULL;
+  manufacturer = NULL;
+  model = NULL;
   zeroToSixtyNs = 0;
   headonDragCoeff = 0;
   horsepower = 0;
@@ -53,8 +54,16 @@ Car:: Car(char const* const manufacturerName, char const*  const modelName, Perf
 
 Car::Car(Car const& o)
 {
-  manufacturer= o.manufacturer;
-  model = o.model;
+  manufacturer= new char[strlen(o.getManufacturer())+1];
+
+  strcpy(manufacturer, o.getManufacturer());
+
+  model = new char[strlen(o.getModel()) + 1];
+
+  strcpy(model, o.getModel());
+
+
+   
   zeroToSixtyNs = o.zeroToSixtyNs;
   headonDragCoeff = o.headonDragCoeff;
 
@@ -65,8 +74,17 @@ Car::Car(Car const& o)
 }
 Car& Car::operator=(Car const& o)
 {
-  manufacturer= o.manufacturer;
-  model = o.model;
+  manufacturer= new char[strlen(o.getManufacturer())+1];
+
+  strcpy(manufacturer, o.getManufacturer());
+
+  model = new char[strlen(o.getModel()) + 1];
+
+  strcpy(model, o.getModel());
+
+
+   
+
   zeroToSixtyNs = o.zeroToSixtyNs;
   headonDragCoeff = o.headonDragCoeff;
 
@@ -77,8 +95,16 @@ Car& Car::operator=(Car const& o)
 }
 Car:: ~Car()
 {
-  delete [] manufacturer;
-  delete[] model;
+  if (manufacturer!=NULL){
+    delete [] manufacturer;
+
+  }
+  if(manufacturer!=NULL)
+  {
+    delete[] model;
+
+  }
+  
 
   //delete [] manufacturer;
   //delete [] model;
@@ -129,8 +155,8 @@ void Car::reexamineDoors(DoorKind newDoorKind)
 
 
 
-/*
 
+/*
 
 int main(int argc, char const *argv[])
 {
