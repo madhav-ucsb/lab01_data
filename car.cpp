@@ -109,7 +109,7 @@ void Car::recountSeats(uint8_t newSeatCount)
 {
   seatCount = newSeatCount;
 }
-void reexamineDoors(DoorKind newDoorKind)
+void Car::reexamineDoors(DoorKind newDoorKind)
 {
   backseatDoors = newDoorKind;
 }
