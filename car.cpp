@@ -5,11 +5,12 @@
 #include <cstddef>
 #include <cstring>
 #include <iostream>
-#include<string>
+
 using namespace std;
 
 
 // #include .......
+#include<string>
 Car :: Car()
 {
   manufacturer , model = NULL , NULL;
@@ -29,8 +30,8 @@ uint8_t Car::getSeatCount() const
 }
 Car:: Car(char const* const manufacturerName, char const*  const modelName, PerformanceStats perf, uint8_t numSeats, DoorKind backseatDoorDesign)
 {
-  manufacturer=(char*) manufacturerName;
-  model = (char*) modelName;
+  manufacturer=strdup(manufacturerName);
+  model = strdup(modelName);
   zeroToSixtyNs = perf.zeroToSixtyNs;
   headonDragCoeff = perf.headonDragCoeff;
 
@@ -93,11 +94,11 @@ DoorKind Car::getBackseatDoors() const
 }
 void Car::manufacturerChange(char const* const newManufacturer)
 {
-  manufacturer = (char*) newManufacturer;
+  manufacturer = strdup(newManufacturer);
 }
 void Car::modelNameChange(char const* const newModelName)
 {
-  model = (char*) newModelName;
+  model = strdup(newModelName);
 }
 void Car::reevaluateStats(PerformanceStats newStats)
 {
@@ -157,6 +158,9 @@ int main(int argc, char const *argv[])
 
   string manu = (string) e.getManufacturer();
   cout<<manu<<endl;
+  string manu1 = (string) c.getManufacturer();
+  cout<<manu1<<endl;
+
 
   
   
