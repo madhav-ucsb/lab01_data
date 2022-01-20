@@ -85,6 +85,9 @@ Car::Car(Car const& o)
 }
 Car& Car::operator=(Car const& o)
 {
+  if(this==&o){
+    return *this;
+  }
   /*
   if(manufacturer)
   {
@@ -178,8 +181,8 @@ void Car::reexamineDoors(DoorKind newDoorKind)
 
 
 
-/*
 
+/*
 int main(int argc, char const *argv[])
 {
 
@@ -203,6 +206,8 @@ int main(int argc, char const *argv[])
   
 
   Car e = d;
+
+  e = e;
 
   int seat_e = (int) e.getSeatCount();
 
@@ -233,3 +238,4 @@ int main(int argc, char const *argv[])
   
 }
 */
+
